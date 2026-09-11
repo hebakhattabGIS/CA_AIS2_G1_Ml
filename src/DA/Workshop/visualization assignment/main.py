@@ -50,7 +50,7 @@ if __name__ == "__main__":
     #check outliers & print fences and outliers
     preprocessing.check_outliers(df)
 
-    #replace outliers values?
+    #replace outliers values? i don't think in this type of data i should remove outliers. 
 
     #check duplicates
     x= df.duplicated().sum()
@@ -59,4 +59,16 @@ if __name__ == "__main__":
         df = preprocessing.removeduplicate(df)
         print(f"{x} duplicates was removed")
     
+    #data visualization
+    #create a count plot for category coulumns
+    preprocessing.plot_categories(df, cnf.CAT_COLS)
+    
+    #create a pie chart
+    preprocessing.plot_piechart(df, cnf.CAT_COLS)
 
+    #create a pairplot
+    preprocessing.make_pairplot(df)
+
+    #create heatmap
+    preprocessing.make_heatmap(df, cnf.NUM_COLS)
+    

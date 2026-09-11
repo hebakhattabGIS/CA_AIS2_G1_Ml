@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import plotly.express as px
 import seaborn as sns
 import warnings
 warnings.filterwarnings("ignore")
@@ -42,6 +43,7 @@ def check_nulls(df: pd.DataFrame):
     ratio = (null / df.shape[0])*100
     return pd.DataFrame({"null ":null, "ratio ": ratio}).T
 
+#check outliers
 def check_outliers(df:pd.DataFrame):
     num_cols = df.select_dtypes("number").columns
     for col in num_cols:
@@ -70,3 +72,37 @@ def check_outliers(df:pd.DataFrame):
 def removeduplicate(df, subset_cols=None, keep_stratgy = "first"):
 
     return (df.drop_duplicates(subset=subset_cols, keep=keep_stratgy).reset_index(drop = True))
+
+#data visualization
+def plot_categories(df, cat_cols):
+    plt.figure(figsize=(14,4))
+    for i , col in enumerate(cat_cols):
+        plt.subplot(2,3, i+1)
+        sns.countplot(x = col, data = df)
+        plt.title(f"{col} count plot")
+
+    plt.subplots_adjust(hspace =0.8, wspace=0.3)
+    plt.show()
+
+def plot_piechart(df, cat_cols):
+    plt.figure(figsize=(14,4))
+    for i , col in enumerate(cat_cols):
+        plt.subplot(2,3, i+1)
+        unique = df[col].value_counts()
+        count = unique.values
+        categories = unique.index
+        plt.pie(count, labels = categories, autopct='%1.1f%%')
+        plt.title(f"{col} pie plot")
+
+    plt.subplots_adjust(hspace =0.8, wspace=0.3)
+    plt.show()
+
+def make_pairplot(df):
+    sns.pairplot(df)
+    plt.show()
+
+def make_heatmap(df, num_cols):
+    corr = df[num_cols].corr()
+    plt.Figure(figsize=(2,2))
+    sns.heatmap(corr, annot=True)
+    plt.show()

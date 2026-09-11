@@ -13,10 +13,10 @@ fpath = r"C:\Users\newle\OneDrive\Desktop\CAI-S2-G1-AI\src\DA\Workshop\visualiza
 CAT_COLS = ["sex","smoker","region"]
 
 #numerical columns
-#NUM_COLS = ["", ""]
+NUM_COLS = ["age", "bmi", "children", "charges"]
 
 #subset columns define subset columns to be used in removeduplicate 
 # function, it defines which columns to look at when deciding 
 # whether a row is a duplicate.when it is none a raw is a 
 # duplicate if every column match
-subset_cols = ["",""]
+subset_cols = None
