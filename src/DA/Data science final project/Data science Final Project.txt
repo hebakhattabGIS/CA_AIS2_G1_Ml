@@ -1,0 +1,11 @@
+Hello everyone! This Final Project is the culmination of our Data Science Module. Follow each part carefully, answer all questions, and thoroughly explore your dataset.
+
+Introduction: Describe your dataset, its source, and the main questions you want to answer.
+Preliminary Wrangling: Load the data, check for missing values, and make initial adjustments.
+- Data Assessment: Identify any data quality issues like duplicates, outliers, or inconsistent formats.
+- Data Cleaning: Fix the issues found to ensure data reliability.
+- Exploratory Data Analysis (EDA):
+- Univariate: Analyze single variables to understand distributions.
+- Bivariate and Multivariate: Explore relationships between two or more variables to find patterns.
+- Conclusions: Summarize findings and provide recommendations based on your analysis.
+- Submit your work with clear code, visuals, and explanations. Good luck!
