@@ -23,8 +23,21 @@ app.layout = html.Div([html.H1("Sales Interactive Dashboard"),
                        dcc.Dropdown(id = 'column-dropdown',
                                     options = [{'label':col, 'value':col} for col in num_cols],
                                     value=num_cols[0]),
-                       dcc.Graph(id = 'pie-chart' )
-
+                        html.Div([html.H3("Trips by Hour"),
+                                  dcc.Graph(id = 'pie-chart' )],
+                                      style={
+                                        "width": "50%",
+                                        "display": "inline-block",
+                                        "verticalAlign": "top"
+                                        }),
+                        html.Div([html.H3("Area bar chart"),                      
+                                  dcc.Graph(id = 'bar-chart' )],
+                                      style={
+                                        "width": "50%",
+                                        "display": "inline-block",
+                                        "verticalAlign": "top"
+                                        }),
+                        
                        ])
 
 
@@ -46,6 +59,24 @@ def update_pie(selected_col):
         color_discrete_sequence=px.colors.qualitative.Set2
     )
     return fig
+
+@app.callback(
+    Output('bar-chart', 'figure'),
+    Input('column-dropdown', 'value')
+)
+def update_bar(selected_col):
+    # Group by Month and sum the selected column
+    grouped = df.groupby('Area')[selected_col].sum().reset_index()
+
+    # Build bar chart
+    fig1 = px.bar(
+        grouped,
+        x='Area',
+        y=selected_col,
+        title=f"Distribution of {selected_col} by Area",
+        color='Area'
+    )
+    return fig1
 
 
 # Run server
